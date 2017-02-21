@@ -1,34 +1,36 @@
+
 import itertools
 import collections
+import re
 
-# value = {
-#     'a':1,
-#     'b':-1,
-#     'c':-1,
-#     'd':-1,
-#     'e':1,
-#     'f':4,
-#     'g':3,
-#     'h'-1,
-#     'i':-1,
-#     'j':10,
-#     'k':-1,
-#     'l':2,
-#     'm':4,
-#     'n':2,
-#     'o':1,
-#     'p':-1,
-#     'q':10,
-#     'r':1,
-#     's':1,
-#     't':1,
-#     'u':2,
-#     'v':5,
-#     'w':-1,
-#     'x':10,
-#     'y':3,
-#     'z':10,
-#     }
+value = {
+    'a':1,
+    'b':-1,
+    'c':4,
+    'd':2,
+    'e':1,
+    'f':4,
+    'g':3,
+    'h':3,
+    'i':-1,
+    'j':10,
+    'k':-1,
+    'l':2,
+    'm':4,
+    'n':2,
+    'o':1,
+    'p':-1,
+    'q':10,
+    'r':1,
+    's':1,
+    't':1,
+    'u':2,
+    'v':5,
+    'w':-1,
+    'x':8,
+    'y':3,
+    'z':10
+    }
 
 
 with open('/usr/share/dict/words') as f:
@@ -43,7 +45,9 @@ def permutations(letters):
             valid_words[word] = 1
     return valid_words
 
-def print_perms(letters):
+def print_perms(letters, regex=""):
+    pattern = re.compile(regex)
     for w in permutations(letters):
-        print w
+        if pattern.search(w):
+            print w
         
